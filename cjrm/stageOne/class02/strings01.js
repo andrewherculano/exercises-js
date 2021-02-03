@@ -28,3 +28,4 @@ console.log(abcLowerCase)
 //Posição caracter
 const index = abc.indexOf('c')
 console.log(index)
+
