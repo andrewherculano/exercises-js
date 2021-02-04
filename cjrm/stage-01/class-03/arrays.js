@@ -7,7 +7,7 @@ console.log(heroes)
 ages = [10, 20, 50, 70]
 console.log(ages[3])
 
-const ramdomHeroes = ['Diana', 'Parker', 1, 5]
+const randomHeroes = ['Diana', 'Parker', 1, 5]
 console.log(ramdomHeroes)
 
 //Métodos arrays
