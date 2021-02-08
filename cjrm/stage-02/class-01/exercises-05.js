@@ -65,7 +65,7 @@ for (let i = 0; i < cities.length; i++) {
   upperCaseCities.push(cities[i].toUpperCase())
 }
 
-//console.log(upperCaseCities)
+console.log(upperCaseCities)
 
 /*
   05 - Comente o console.log acima e:
