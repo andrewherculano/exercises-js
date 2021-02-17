@@ -28,6 +28,6 @@ console.log(pushHeroes)
 console.log(heroes)
 
 //Example five
-const popHeroes = heroes.pop('Hulk')
+const popHeroes = heroes.pop()
 console.log(popHeroes)
 console.log(heroes)
