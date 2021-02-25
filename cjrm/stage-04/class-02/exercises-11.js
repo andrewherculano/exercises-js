@@ -4,8 +4,8 @@
   - Ela deve ter um escopo global.
 */
 
-const myName = 'Andrew Herculano'
-console.log(myName)
+myName = 'Andrew Herculano'
+console.log(`Meu nome é ${myName}`)
 
 /*
   02
@@ -20,15 +20,12 @@ console.log(myName)
   - Você sabe por que isso aconteceu?
 */
 
-const myAge = () => {
+const displayAge = () => {
   let age = 20
-  console.log(age)
-} 
-myAge()
-
-// console.log(age)
-
-console.log(`a variavel "age" não é exibida pois está declarada somente no escopo do bloco e não no escopo global`)
+  console.log(`Tenho ${age} anos de idade`)
+}
+displayAge()
+//console.log(age) -- Não é exibido a idade porque está fora do escopo do bloco onde foi criada a variavel.
 
 /*
   03
@@ -50,12 +47,12 @@ console.log(`a variavel "age" não é exibida pois está declarada somente no es
 let car = {
   name: 'Kwid',
   brand: 'Renault',
-  colors: ['White', 'Black', 'Red'],
+  colors: ['Red', 'Black', 'White'],
   isRunning: false,
   run: function () {
     this.isRunning = true
 
-    return `O ${car.name} está em movimento`
+    return `O ${this.name} está em movimento`
   },
   stop: function () {
     this.isRunning = false
@@ -63,15 +60,12 @@ let car = {
     return `O ${this.name} está parado`
   },
   getColorsMessage: function () {
-    const lastColor = this.colors[this.colors.length -1]
-    const colorsCar = this.colors.join(', ').replace(lastColor, `e ${lastColor}`) 
+    lastIndexColors = this.colors[this.colors.length -1]
+    carColors = this.colors.join(', ').replace(`, ${lastIndexColors}`, ` e ${lastIndexColors}`)
 
-    return `O ${this.name} está disponível nas cores ${colorsCar}`
+    return `O ${this.name} está disponível nas cores ${carColors}`
   }
 }
-
-console.log(car.getColorsMessage())
-
 
 /*
   04
