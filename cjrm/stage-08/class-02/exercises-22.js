@@ -7,10 +7,9 @@
 
 const names = ["Caio", "André", "Dário"];
 
-const copyNames = names.map(name => name)
-copyNames.sort()
+const copyNames = names.map((name) => name).sort();
 
-console.log(copyNames)
+console.log(names, copyNames);
 
 /*
   02
@@ -26,11 +25,11 @@ const characters = [
   { id: 04, name: "Mufasa" },
 ];
 
-const orderById = characters.map(character => ({id: character.id, name: character.name}))
+const orderCharacterById = characters
+  .map((item) => ({ id: item.id, name: item.name }))
+  .sort((item2, item1) => item2.id - item1.id);
 
-orderById.sort((item2, item1) => item2.id - item1.id)
-
-console.log(orderById, characters)
+console.log(orderCharacterById, characters);
 
 /*
   03
@@ -41,21 +40,21 @@ console.log(orderById, characters)
 
 const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291];
 
-const copyNumbers = numbers.map(number => number)
+const ascendingOrder = numbers
+  .map((item) => item)
+  .sort((item2, item1) => item2 - item1);
 
-copyNumbers.sort((item2, item1) => item2 - item1)
-
-console.log(copyNumbers)
+console.log(ascendingOrder);
 
 /*
   04
   - Encontre e exiba no console o 1º item maior que 50 do array abaixo.
 */
 
-const randomNumbers = [10, 5, 0, 40, 60, 10, 20, 52, 70, 55];
+const randomNumbers = [10, 5, 51, 0, 40, 60, 10, 20, 52, 70, 55];
 
-const firstNumberGreaterThan50 = randomNumbers.find(number => number > 50)
-console.log(firstNumberGreaterThan50)
+const firstNumberGreaterThan50 = randomNumbers.find((element) => element > 50);
+console.log(firstNumberGreaterThan50);
 
 /*
   05
@@ -64,12 +63,14 @@ console.log(firstNumberGreaterThan50)
   - Exiba o array ordenado no console.
 */
 
-const people = ["Cauã", "Alfredo", "Bruno"];
+const people = ["Zion", "Cauã", "Alfredo", "Bruno"];
 
-const copyPeople = people.map(name => name)
-copyPeople.sort().reverse()
+const reverseOrderAlphabetical = people
+  .map((item) => item)
+  .sort()
+  .reverse();
 
-console.log(copyPeople)
+console.log(reverseOrderAlphabetical);
 
 /*
   06
@@ -79,19 +80,22 @@ console.log(copyPeople)
   - Exiba a string no console.
 */
 
-const ingredients = ["vinho", "tomate", "cebola", "cogumelo"];
+const ingredients = ["vinho", "tomate", "cebola", "cogumelo", "geleia"];
 
-const message = ingredients.reduce((acc, ingredient, index, array) => {
-    correctWordGender = ingredient[ingredient.length -1] === 'o' ? 'cozido' : 'cozida'
+const messageIngredients = ingredients.reduce(
+  (accumulator, item, index, array) => {
+    const cozidoOrCozida = item[item.length - 1] === "a" ? "cozida" : "cozido";
 
-    if (index === array.length -1) {
-        return acc + `${ingredient} ${correctWordGender}`
+    if (index === array.length - 1) {
+      return accumulator + `${item} ${cozidoOrCozida}.`;
     }
 
-    return acc + `${ingredient} ${correctWordGender}, `
-}, '')
+    return accumulator + `${item} ${cozidoOrCozida}, `;
+  },
+  ""
+);
 
-console.log(message)
+console.log(messageIngredients);
 
 /*
   07
@@ -137,12 +141,13 @@ const topBrazilmovies = [
   },
 ];
 
-const counterDisneyViews = topBrazilmovies.filter(movie => movie.distributedBy === 'Disney')
-.reduce((accumulator, item) => {
-    return accumulator + item.peopleAmount
-}, 0)
+const viewMoviesDisney = topBrazilmovies
+  .filter((item) => item.distributedBy === "Disney")
+  .reduce((accumulator, item) => {
+    return accumulator + item.peopleAmount;
+  }, 0);
 
-console.log(counterDisneyViews)
+console.log(viewMoviesDisney);
 
 /*
   08
@@ -164,15 +169,16 @@ const pets = [
   { name: "Chico", age: 6, gender: "Male", type: "Dog" },
 ];
 
-const dogs = pets.filter(pet => pet.type === 'Dog')
-.map(pet => ({
-    name: pet.name,
-    age: pet.age*7,
-    gender: pet.gender,
-    type: pet.type
-}))
+const humanAge = pets
+  .filter((item) => item.type === "Dog")
+  .map((item) => ({
+    name: item.name,
+    age: item.age * 7,
+    gender: item.gender,
+    type: item.type,
+  }));
 
-console.log(dogs)
+console.log(humanAge);
 
 /*
   09
@@ -180,13 +186,13 @@ console.log(dogs)
   - Considerando o array topBrazilmovies, através do map ou do reduce, insira 
     os nomes dos filmes na ul do index.html.
 */
-const ul = document.querySelector('.list-group')
+const ul = document.querySelector(".list-group");
 
-const moviesNames = topBrazilmovies
-    .map(movie => `<li>${movie.title}</li>`)
-    .join('')
+const insertMovies = topBrazilmovies
+  .map((item) => `<li>${item.title}</li>`)
+  .join("");
 
-ul.innerHTML = moviesNames
+ul.innerHTML = insertMovies;
 
 /*
   10
