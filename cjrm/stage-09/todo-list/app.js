@@ -1,5 +1,6 @@
 const formAddTodo = document.querySelector(".form-add-todo");
 const todosContainer = document.querySelector(".todos-container");
+const formSearch = document.querySelector('.form-search')
 
 formAddTodo.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -24,3 +25,23 @@ todosContainer.addEventListener('click', (event) => {
         clickedElement.parentElement.remove()
     }
 })
+
+formSearch.addEventListener('input' , (event) => {
+  const inputValue = event.target.value.trim().toLowerCase()
+
+  Array.from(todosContainer.children)
+  .filter(todo => !todo.textContent.toLowerCase().includes(inputValue))
+  .forEach((todo) => {
+    todo.classList.remove('d-flex')
+    todo.classList.add('hidden')
+  })
+  
+  Array.from(todosContainer.children)
+  .filter(todo => todo.textContent.toLowerCase().includes(inputValue))
+  .forEach((todo) => {
+    todo.classList.remove('hidden')
+    todo.classList.add('d-flex')
+  })
+
+})
+
