@@ -19,7 +19,7 @@ const months = [
   "Dezembro",
 ];
 
-// console.log(months.indexOf('Fevereiro'))
+console.log(months.indexOf('Fevereiro'))
 
 /*
     02
