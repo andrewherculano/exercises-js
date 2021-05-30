@@ -170,8 +170,6 @@ const logMessageColors = (item) => {
 }
 arrayColors.forEach(logMessageColors)
 
-
-
 /*
   07
   - Através do array abaixo, gere um objeto com a frequência de idades das 
