@@ -1,4 +1,5 @@
 const form = document.querySelector('form')
+const GIFsContainer = document.querySelector('div')
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault()
@@ -15,7 +16,14 @@ form.addEventListener('submit', async (event) => {
     }
 
     const GIFData = await response.json()
-    console.log(GIFData)
+    const downSizedGIFUrl = GIFData.data[0].images.downsized.url
+    const image = document.createElement('img')
+
+    image.setAttribute('src', downSizedGIFUrl)
+    image.setAttribute('alt', GIFData.data[0].title)
+
+    GIFsContainer.insertAdjacentElement('afterbegin', image)
+    event.target.reset()
 
   } catch (error) {
     alert(`Erro: ${error.message}`)
