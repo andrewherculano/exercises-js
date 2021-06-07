@@ -1,5 +1,5 @@
 const form = document.querySelector('form')
-const GIFsContainer = document.querySelector('div')
+const gifContainer = document.querySelector('.insert-image')
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault()
@@ -12,20 +12,20 @@ form.addEventListener('submit', async (event) => {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw new Error('Não foi possível obter os dados da API')
+      throw new Error('Não foi possível obter os dados')
     }
 
-    const GIFData = await response.json()
-    const downSizedGIFUrl = GIFData.data[0].images.downsized.url
-    const image = document.createElement('img')
+    const gifData = await response.json()
+    const downsizedGifUrl = gifData.data[0].images.downsized.url
+    const img = document.createElement('img')
 
-    image.setAttribute('src', downSizedGIFUrl)
-    image.setAttribute('alt', GIFData.data[0].title)
+    img.setAttribute('src', downsizedGifUrl)
+    img.setAttribute('alt', gifData.data[0].title)
 
-    GIFsContainer.insertAdjacentElement('afterbegin', image)
+    gifContainer.insertAdjacentElement('afterbegin', img)
     event.target.reset()
 
   } catch (error) {
-    alert(`Erro: ${error.message}`)
+    alert(`Erro: ${error}`)
   }
 })

@@ -24,7 +24,6 @@ quizForm.addEventListener("submit", (event) => {
   scrollTo(0,0)
   finalResult.classList.remove('d-none')
   
-
   let counter = 0
 
   const timerScore = setInterval (() => {

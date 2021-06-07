@@ -6,6 +6,9 @@
 
 const div = document.querySelector('div')
 const h2 = document.querySelector('h2')
+const button = document.querySelector('button')
+const divEgg = document.querySelector('.egg')
+
 const elementsInsideDiv = Array.from(div.children)
 
 elementsInsideDiv.forEach(element => {
@@ -22,6 +25,18 @@ elementsInsideDiv.forEach(element => {
 
 div.addEventListener('click', () => {
   h2.innerHTML = 'Clicou na div.'
+})
+
+h2.addEventListener('copy', () => {
+  console.log('Texto copiado')
+})
+
+divEgg.addEventListener('mousemove', (event) => {
+    divEgg.textContent = `Eixo X: ${event.offsetX} | Eixo Y: ${event.offsetY}`
+})
+
+button.addEventListener('click', () => {
+    divEgg.style.background = 'lightgoldenrodyellow'
 })
 
 /*
@@ -44,10 +59,6 @@ div.addEventListener('click', () => {
     seja exibida no console.
 */
 
-h2.addEventListener('copy', () => {
-    console.log('Texto copiado')
-})
-
 /*
   05
   - Faça com que o movimento do mouse dentro da div com a classe "egg" substitua
@@ -55,23 +66,11 @@ h2.addEventListener('copy', () => {
     "Eixo X: COORDENADA_EIXO_X | Eixo Y: COORDENADA_EIXO_Y".
 */
 
-const divEgg = document.querySelector('.egg')
-
-divEgg.addEventListener('mousemove', (event) => {
-    divEgg.textContent = `Eixo X: ${event.offsetX} | Eixo Y: ${event.offsetY}`
-})
-
 /*
   06
   - Modifique a cor do ovo para "lightgoldenrodyellow" quando o botão for 
     clicado.
 */
-
-const button = document.querySelector('button')
-
-button.addEventListener('click', () => {
-    divEgg.style.background = 'lightgoldenrodyellow'
-})
 
 /*
   07
