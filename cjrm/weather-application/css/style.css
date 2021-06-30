@@ -4,9 +4,17 @@ body {
 }
 
 .container {
-  max-width: 400px;
+  max-width: 500px;
 }
 
 h1 {
   font-size: 2.2rem;
+}
+
+.time-icon {
+  position: relative;
+  top: -50px;
+  border-radius: 50%;
+  width: 100px;
+  margin-bottom: -50px;
 }

@@ -1,34 +1,34 @@
-const APIKey = 'QoA8unKe3EVJT3uApvZfwGIoU9tJJQC2'
-const baseUrl = 'http://dataservice.accuweather.com/'
+const cityForm = document.querySelector('[data-js="change-location"]')
+const cityNameContainer = document.querySelector('[data-js="city-name"]')
+const cityWheaterContainer = document.querySelector('[data-js="city-wheater"]')
+const cityTemperatureContainer = document.querySelector('[data-js="city-temperature"]')
+const cityCard = document.querySelector('[data-js="city-card"]')
+const timeIconContainer = document.querySelector('[data-js="time-icon"]')
 
-const getCityUrl = cityName =>
-  `${baseUrl}locations/v1/cities/search?apikey=${APIKey}&q=${cityName}`
+let timeImg = document.querySelector('[data-js="time"]')
 
-const getWheaterUrl = ({ Key }) => 
-  `${baseUrl}currentconditions/v1/${Key}?apikey=${APIKey}&language=pt-br`
+cityForm.addEventListener('submit', async event => {
+  event.preventDefault()
 
-const fetchData = async url => {
-  try {
-    const response = await fetch(url)
+  const inputValue = event.target.city.value
+  const [{ Key, LocalizedName }] = await getCityData(inputValue)
+  const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }] = await getCityWheater(Key)
+  const timeIcon = `<img src="./src/icons/${WeatherIcon}.svg" />`
 
-    if (!response.ok) {
-      throw new Error('Não foi possível obter os dados da API')
-    }
-
-    return response.json()
-  } catch ({ name, message }) {
-    alert(`${name}: ${message}`)
+  if (cityCard.classList.contains('d-none')) {
+    cityCard.classList.remove('d-none')
   }
-}
 
-const getCityData = cityName => 
-  fetchData(getCityUrl(cityName))
+  if (IsDayTime) {
+    timeImg.src = './src/day.svg'
+  } else {
+    timeImg.src = './src/night.svg'
+  }
 
-const getCityWheater = async cityName => {
-  const [ cityData ] = await getCityData(cityName)
+  timeIconContainer.innerHTML = timeIcon 
+  cityNameContainer.textContent = LocalizedName
+  cityWheaterContainer.textContent = WeatherText
+  cityTemperatureContainer.textContent = Temperature.Metric.Value
 
-  return fetchData(getWheaterUrl(cityData))
-}
-
-getCityWheater('São Paulo')
-  .then(console.log)
+  cityForm.reset()
+})
