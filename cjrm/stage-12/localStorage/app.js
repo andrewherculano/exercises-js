@@ -17,3 +17,9 @@ age = localStorage.getItem('Idade')
 message = `Meu nome é ${name} e minha idade é ${age} anos`
 
 console.log(message)
+
+// Deletando um item
+localStorage.removeItem('Nome')
+
+//Deletando todos os Dados
+localStorage.clear()
