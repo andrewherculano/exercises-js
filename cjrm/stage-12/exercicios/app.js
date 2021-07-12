@@ -49,28 +49,24 @@ input.addEventListener('input', event => {
     retornar 60 e a segunda invocação, 10.
 */
 
-function add100(num) {
-  return num + 100
+const add100 = num => num + 100
+
+const divByFive = num => num / 5
+
+const multiplyByThree = num => num * 3
+
+const multiplyFive = num => num * 5
+
+const addTen = num => num + 10
+
+const combineOperations = (initialNumber, arrayOfNumbers) => {
+  return arrayOfNumbers.reduce((acc, func) => {
+    return func(acc)
+  }, initialNumber)
 }
 
-function divByFive(num) {
-  return num / 5
-}
-
-function multiplyByThree(num) {
-  return num * 3
-}
-
-function multiplyFive(num) {
-  return num * 5
-}
-
-function addTen(num) {
-  return num + 10
-}
-
-// console.log(combineOperations(0, [add100, divByFive, multiplyByThree]))
-// console.log(combineOperations(0, [divByFive, multiplyFive, addTen]))
+console.log(combineOperations(0, [add100, divByFive, multiplyByThree]))
+console.log(combineOperations(0, [divByFive, multiplyFive, addTen]))
 
 /*
   04
@@ -109,7 +105,10 @@ const searchAlbum = {
   genre: 'Rock'
 }
 
-if (albums.includes(searchAlbum)) {
+const searchAlbumExistsInArray = albums
+  .some(element => (element.id === searchAlbum.id))
+
+if (searchAlbumExistsInArray) {
   console.log(`${JSON.stringify(searchAlbum)} existe no array albums.`)
 }
 
@@ -135,6 +134,12 @@ const obj = {
   },
 }
 
+const objCopy = {
+  ...obj
+}
+
+console.log(objCopy)
+
 /*
   06
   - Implemente uma função que cria e retorna um elemento HTML;
@@ -143,6 +148,28 @@ const obj = {
   - A quantidade de atributos que o elemento irá conter pode variar.
   Dica: pesquise por Object.entries.
 */
+
+const createElement = (elementName, attributes) => {
+  const element = document.createElement(elementName)
+  const attributesAsArray = Object.entries(attributes)
+
+  attributesAsArray.forEach((item) => {
+    element.setAttribute(item[0], item[1])
+  })
+
+  return element
+}
+
+const input1 = createElement('input', {
+  type: 'radio',
+  id: 'input1',
+  name: 'main',
+  value: 'principal',
+  for: 'input1',
+  'data-js': 'input1'
+})
+
+console.log(input1)
 
 /*
   07
