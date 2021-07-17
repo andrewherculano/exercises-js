@@ -25,7 +25,8 @@ const myName = 'andrew'
 
 const getFirstLetterToUpperCase = str => {
   const firstLetterToUpperCase = [str[0]
-    .toUpperCase(), ...str.slice(1)]
+      .toUpperCase(), ...str.slice(1)
+    ]
     .join('')
   
   return firstLetterToUpperCase
@@ -98,6 +99,13 @@ const timestamps = [
   }
 ]
 
+const newTimestamps = timestamps.reduce((accumulator, { date, value }) => {
+  accumulator[date] = value
+  return accumulator
+}, {})
+
+console.log(newTimestamps)
+
 /*
   06
   - Já implementamos os métodos some, map e filter, do zero;
@@ -119,6 +127,22 @@ const timestamps = [
 
 let accumulator = 0
 const oddNumbers = [51, 97, 65, 23]
+
+const forEach = (array, func) => {
+  for (let i = 0; i < array.length; i++) {
+    func(array[i], i, array)
+  }
+}
+
+forEach(oddNumbers, (item, index, array) => {
+  const message = 
+    `"${item}" é o ${index + 1}º item do array [${array.join(', ')}]`
+    
+  console.log(message)
+  accumulator += item
+})
+
+console.log(accumulator)
 
 /*
   07
