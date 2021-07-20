@@ -28,7 +28,7 @@ const getFirstLetterToUpperCase = str => {
       .toUpperCase(), ...str.slice(1)
     ]
     .join('')
-  
+
   return firstLetterToUpperCase
 }
 console.log(getFirstLetterToUpperCase(myName))
@@ -46,7 +46,11 @@ const randomNumber = Math.round(Math.random() * 100)
 const obj = {
   a: 1,
   b: 2,
-  ...(randomNumber > 50 ? {c: 3} : {d: 4})
+  ...(randomNumber > 50 ? {
+    c: 3
+  } : {
+    d: 4
+  })
 }
 
 console.log(obj)
@@ -65,7 +69,9 @@ const third = object => ({
 const second = object => third(object)
 const first = object => second(object)
 
-const object = { k: 't' }
+const object = {
+  k: 't'
+}
 const object2 = first(object)
 
 // first(object)
@@ -84,8 +90,7 @@ console.log(object, object2)
   }
 */
 
-const timestamps = [
-  {
+const timestamps = [{
     date: '3242348-9842340234',
     value: 6
   },
@@ -99,7 +104,10 @@ const timestamps = [
   }
 ]
 
-const newTimestamps = timestamps.reduce((accumulator, { date, value }) => {
+const newTimestamps = timestamps.reduce((accumulator, {
+  date,
+  value
+}) => {
   accumulator[date] = value
   return accumulator
 }, {})
@@ -135,9 +143,9 @@ const forEach = (array, func) => {
 }
 
 forEach(oddNumbers, (item, index, array) => {
-  const message = 
+  const message =
     `"${item}" é o ${index + 1}º item do array [${array.join(', ')}]`
-    
+
   console.log(message)
   accumulator += item
 })
@@ -176,32 +184,29 @@ const nextButton = document.querySelector('[data-js="carousel__button--next"]')
 const prevButton = document.querySelector('[data-js="carousel__button--prev"]')
 const slides = document.querySelectorAll('[data-js="carousel__item"]')
 
+const lastSlide = slides.length - 1
 let currentSlideIndex = 0
 
-nextButton.addEventListener('click', () => {
-  if (currentSlideIndex === slides.length -1) {
-    currentSlideIndex = 0
-  } else {
-    currentSlideIndex++
-  }
-
+const manipulatedSlidesClasses = currentSlideIndex => {
   slides.forEach(slide => {
     slide.classList.remove('carousel__item--visible')
   })
 
   slides[currentSlideIndex].classList.add('carousel__item--visible')
+}
+
+nextButton.addEventListener('click', () => {
+  currentSlideIndex === lastSlide 
+    ? currentSlideIndex = 0 
+    : currentSlideIndex++
+
+  manipulatedSlidesClasses(currentSlideIndex)
 })
 
 prevButton.addEventListener('click', () => {
-  if (currentSlideIndex === 0) {
-    currentSlideIndex = slides.length -1
-  } else {
-    currentSlideIndex--
-  }
+  currentSlideIndex === 0 
+    ? currentSlideIndex = lastSlide
+    : currentSlideIndex--
 
-  slides.forEach(slide => {
-    slide.classList.remove('carousel__item--visible')
-  })
-
-  slides[currentSlideIndex].classList.add('carousel__item--visible')
+  manipulatedSlidesClasses(currentSlideIndex)
 })
